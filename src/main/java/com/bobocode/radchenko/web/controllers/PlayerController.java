@@ -6,14 +6,15 @@ import com.bobocode.radchenko.web.ui.response.PlayerShortDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping(path = "/player")
@@ -29,17 +30,17 @@ public class PlayerController {
     }
 
     @GetMapping(path = "/all")
-    @ResponseStatus(HttpStatus.OK)
-    public List<PlayerShortDto> getAll() {
+    public ResponseEntity<List<PlayerShortDto>> getAll() {
         List<Player> players = playerService.findAll();
-        return players.stream().map(this::toDto).collect(Collectors.toList());
+        List<PlayerShortDto> playerDto = players.stream().map(this::toDto).collect(toList());
+        return new ResponseEntity<>(playerDto, HttpStatus.OK);
     }
 
     @GetMapping(path = "/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public PlayerShortDto getOne(@PathVariable(name = "id") Long id) {
+    public ResponseEntity<PlayerShortDto> getOne(@PathVariable(name = "id") Long id) {
         Player managedEntity =  playerService.findById(id);
-        return toDto(managedEntity);
+        PlayerShortDto dto = toDto(managedEntity);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     private PlayerShortDto toDto(Player player) {

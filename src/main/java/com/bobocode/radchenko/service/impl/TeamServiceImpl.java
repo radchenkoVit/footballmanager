@@ -58,6 +58,7 @@ public class TeamServiceImpl implements TeamService {
         return teamRepository.findAllFetchPlayers();
     }
 
+    //TODO
     @Transactional(readOnly = true)
     public Team findByCaptain(long id) {
         return null;

@@ -5,7 +5,7 @@ public class PlayerDto {
     private String firstName;
     private String lastName;
     private String position;
-    private TeamDto team;
+    private TeamShortDto team;
 
     public Long getId() {
         return id;
@@ -39,11 +39,11 @@ public class PlayerDto {
         this.position = position;
     }
 
-    public TeamDto getTeam() {
+    public TeamShortDto getTeam() {
         return team;
     }
 
-    public void setTeam(TeamDto team) {
+    public void setTeam(TeamShortDto team) {
         this.team = team;
     }
 }
