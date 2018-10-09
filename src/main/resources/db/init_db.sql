@@ -20,7 +20,9 @@ create table players (
 
 INSERT INTO teams values (1, 'first_team', null);
 INSERT INTO teams values (2, 'second_team', null);
+INSERT INTO teams values (3, '3_team', null);
 
-INSERT INTO players values (1, 'player_one_name', 'player_one_last_name', 'p1', null);
+INSERT INTO players values (1, 'player_one_name', 'player_one_last_name', 'p1', 1);
 INSERT INTO players values (2, 'player_two_name', 'player_two_last_name', 'p2', null);
-INSERT INTO players values (3, 'player_three_name', 'player_three_last_name', 'p3', null);
+INSERT INTO players values (3, 'player_three_name', 'player_three_last_name', 'p3', 3);
+INSERT INTO players values (4, 'second_player_in_first_team', 'second_player_in_first_team', 'p4', 1);

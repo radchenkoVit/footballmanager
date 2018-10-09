@@ -21,7 +21,6 @@ import java.util.Set;
 
 @NoArgsConstructor
 @Getter @Setter
-@ToString
 @Entity
 @EqualsAndHashCode(of = "id")
 @Table(name = "teams")

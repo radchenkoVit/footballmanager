@@ -21,5 +21,6 @@ public interface TeamRepository extends JpaRepository<Team, Long>, TeamCustomRep
     @Query("Select t From Team t join fetch t.players where t.id =:id")
     Optional<Team> findByIdFetchPlayers(@Param(value = "id") long id);
 
+    boolean existsById(long id);
 
 }

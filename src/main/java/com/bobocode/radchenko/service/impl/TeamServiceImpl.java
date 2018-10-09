@@ -63,4 +63,9 @@ public class TeamServiceImpl implements TeamService {
     public Team findByCaptain(long id) {
         return null;
     }
+
+    @Transactional(readOnly = true)
+    public boolean existById(long id) {
+        return teamRepository.existsById(id);
+    }
 }

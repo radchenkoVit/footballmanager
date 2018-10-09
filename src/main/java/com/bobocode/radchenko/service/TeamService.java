@@ -15,4 +15,5 @@ public interface TeamService {
     List<Team> findAll();
     List<Team> findAllFetchPlayers();
     Team findByCaptain(long id);
+    boolean existById(long id);
 }

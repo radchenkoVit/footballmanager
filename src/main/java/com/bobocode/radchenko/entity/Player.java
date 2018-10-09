@@ -18,7 +18,6 @@ import java.util.Objects;
 
 @NoArgsConstructor
 @Getter @Setter
-@ToString
 @Entity
 @Table(name = "players")
 public class Player {
