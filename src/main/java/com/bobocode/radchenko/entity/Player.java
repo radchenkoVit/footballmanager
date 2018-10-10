@@ -23,7 +23,8 @@ import java.util.Objects;
 public class Player {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE)//TODO: how to create sequence
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "first_name", nullable = false)
@@ -39,16 +40,19 @@ public class Player {
     @JoinColumn(name = "team_id", unique = true, nullable = true)
     private Team team;
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Player player = (Player) o;
-        return Objects.equals(id, player.id);
+
+        return id != null ? id.equals(player.id) : player.id == null;
     }
 
     @Override
     public int hashCode() {
-        return 31;
+        return 16;
     }
 }

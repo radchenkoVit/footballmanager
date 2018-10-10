@@ -2,14 +2,14 @@ DROP TABLE if EXISTS players;
 DROP TABLE if EXISTS teams;
 
 create table teams (
-  id              BIGINT,
+  id              identity,
   name            VARCHAR(255) NOT NULL,
   captan_id       BIGINT,
   CONSTRAINT teams_PK PRIMARY KEY (id)
 );
 
 create table players (
-  id              BIGINT,
+  id              identity,
   first_name      VARCHAR(255) NOT NULL,
   last_name       VARCHAR(255) NOT NULL,
   position        VARCHAR(255) NOT NULL,

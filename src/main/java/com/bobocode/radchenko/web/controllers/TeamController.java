@@ -74,8 +74,12 @@ public class TeamController {
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<TeamDto> update(@PathVariable(name = "id") Long id, @RequestBody TeamRequestDto teamDto) {
-        if (Objects.equals(id, teamDto.getId())) {
+        if (!Objects.equals(id, teamDto.getId())) {
             throw new RuntimeException("Not the same ID");
+        }
+
+        if (!teamService.existById(id)) {
+            throw new EntityNotFoundException();
         }
 
         Team team = mapper.map(teamDto, Team.class);

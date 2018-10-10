@@ -24,9 +24,9 @@ public class TeamServiceImpl implements TeamService {
         return teamRepository.save(team);
     }
 
-    //TODO
+    //TODO: is it correct?
     public Team update(Team team) {
-        return null;
+        return teamRepository.save(team);
     }
 
     public void delete(long id) {
