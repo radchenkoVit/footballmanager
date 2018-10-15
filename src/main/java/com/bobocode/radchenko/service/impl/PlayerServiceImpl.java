@@ -57,7 +57,7 @@ public class PlayerServiceImpl implements PlayerService {
     @Override//TODO:CREATE SUPPLIER FOR EXCEPTION
     public void assignTeam(long playerId, long teamId) {
         Player player = playerRepository.findById(playerId).orElseThrow(() -> new EntityNotFoundException("No Player found with id: " + playerId));
-        Team team = teamRepository.findById(teamId).get();
+        Team team = teamRepository.findById(teamId).orElseThrow(() -> new EntityNotFoundException("No Team found with id: " + playerId));
         player.setTeam(team);
     }
 
