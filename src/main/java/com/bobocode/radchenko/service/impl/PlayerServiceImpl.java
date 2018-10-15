@@ -1,8 +1,10 @@
 package com.bobocode.radchenko.service.impl;
 
 import com.bobocode.radchenko.entity.Player;
+import com.bobocode.radchenko.entity.Team;
 import com.bobocode.radchenko.exceptions.EntityNotFoundException;
 import com.bobocode.radchenko.repository.player.PlayerRepository;
+import com.bobocode.radchenko.repository.team.TeamRepository;
 import com.bobocode.radchenko.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +16,12 @@ import java.util.List;
 @Transactional
 public class PlayerServiceImpl implements PlayerService {
     private final PlayerRepository playerRepository;
+    private final TeamRepository teamRepository;
 
     @Autowired
-    public PlayerServiceImpl(PlayerRepository playerRepository) {
+    public PlayerServiceImpl(PlayerRepository playerRepository, TeamRepository teamRepository) {
         this.playerRepository = playerRepository;
+        this.teamRepository = teamRepository;
     }
 
     @Override
@@ -25,9 +29,9 @@ public class PlayerServiceImpl implements PlayerService {
         return playerRepository.save(player);
     }
 
-    @Override//TODO
+    @Override
     public Player update(Player player) {
-        return null;
+        return playerRepository.save(player);
     }
 
     @Override
@@ -48,6 +52,13 @@ public class PlayerServiceImpl implements PlayerService {
         return playerRepository
                 .findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No Player found with id: " + id));
+    }
+
+    @Override//TODO:CREATE SUPPLIER FOR EXCEPTION
+    public void assignTeam(long playerId, long teamId) {
+        Player player = playerRepository.findById(playerId).orElseThrow(() -> new EntityNotFoundException("No Player found with id: " + playerId));
+        Team team = teamRepository.findById(teamId).get();
+        player.setTeam(team);
     }
 
     @Override

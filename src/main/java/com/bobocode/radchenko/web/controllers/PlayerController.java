@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -88,6 +89,12 @@ public class PlayerController {
     public ResponseEntity removePlayer(@PathVariable(name = "id") Long id) {
         playerService.remove(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping(path = "/{id}/assign/team")
+    public ResponseEntity assignTeam(@PathVariable(name = "id") Long playerId, @RequestParam(name = "teamId") Long teamId) {
+        playerService.assignTeam(playerId, teamId);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     private PlayerShortDto toDto(Player player) {
