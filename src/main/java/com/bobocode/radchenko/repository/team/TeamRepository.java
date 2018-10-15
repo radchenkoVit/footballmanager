@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface TeamRepository extends JpaRepository<Team, Long>, TeamCustomRepository {
 
@@ -15,12 +16,14 @@ public interface TeamRepository extends JpaRepository<Team, Long>, TeamCustomRep
 
     List<Team> findAll();
 
-    @Query("Select t From Team t join fetch t.players")
-    List<Team> findAllFetchPlayers();
+    @Query("Select t From Team t left join fetch t.players")
+    Set<Team> findAllFetchPlayers();
 
-    @Query("Select t From Team t join fetch t.players where t.id =:id")
+    @Query("Select t From Team t left join fetch t.players where t.id =:id")
     Optional<Team> findByIdFetchPlayers(@Param(value = "id") long id);
 
     boolean existsById(long id);
+
+    Optional<Team> findByCaptainId(long id);
 
 }

@@ -17,7 +17,7 @@ public class TeamCustomRepositoryImpl implements TeamCustomRepository {
 
     @Transactional(readOnly = true)
     public Set<Player> findPlayersByTeamId(long id) {
-        Team team = em.createQuery("Select t From Team t join fetch t.players where t.id =:id", Team.class)
+        Team team = em.createQuery("Select t From Team t left join fetch t.players where t.id =:id", Team.class)
                 .setParameter("id", id)
                 .getSingleResult();
         return team.getPlayers();

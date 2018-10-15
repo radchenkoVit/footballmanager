@@ -5,6 +5,7 @@ import java.util.Set;
 public class TeamDto {
     private Long id;
     private String name;
+    private Long captainId;
     private Set<PlayerShortDto> players;
 
     public Long getId() {
@@ -13,6 +14,14 @@ public class TeamDto {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getCaptainId() {
+        return captainId;
+    }
+
+    public void setCaptainId(Long captainId) {
+        this.captainId = captainId;
     }
 
     public String getName() {

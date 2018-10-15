@@ -1,5 +1,6 @@
 package com.bobocode.radchenko.service.impl;
 
+import com.bobocode.radchenko.entity.Player;
 import com.bobocode.radchenko.entity.Team;
 import com.bobocode.radchenko.exceptions.EntityNotFoundException;
 import com.bobocode.radchenko.repository.team.TeamRepository;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
+
+import static java.lang.String.format;
 
 @Service
 @Transactional
@@ -54,14 +58,32 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Transactional(readOnly = true)
-    public List<Team> findAllFetchPlayers() {
+    public Set<Team> findAllFetchPlayers() {
         return teamRepository.findAllFetchPlayers();
     }
 
-    //TODO
     @Transactional(readOnly = true)
     public Team findByCaptain(long id) {
-        return null;
+        return teamRepository
+                .findByCaptainId(id)
+                .orElseThrow(() -> new EntityNotFoundException(format("Team with captain id %s not found", id)));
+    }
+
+    @Override
+    public void addPlayer(long teamId, Player player) {
+        Team team = findById(teamId);
+        team.addPlayer(player);
+    }
+
+    @Override
+    public void removePlayer(long teamId, Player player) {
+        Team team = findById(teamId);
+        team.removePlayer(player);
+    }
+
+    @Override
+    public Set<Player> findPlayersByTeamId(long teamId) {
+        return teamRepository.findPlayersByTeamId(teamId);
     }
 
     @Transactional(readOnly = true)

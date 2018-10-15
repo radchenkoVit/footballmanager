@@ -3,6 +3,7 @@ package com.bobocode.radchenko.web.ui.response;
 public class TeamShortDto {
     private Long id;
     private String name;
+    private Long captainId;
 
     public Long getId() {
         return id;
@@ -18,5 +19,13 @@ public class TeamShortDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getCaptainId() {
+        return captainId;
+    }
+
+    public void setCaptainId(Long captainId) {
+        this.captainId = captainId;
     }
 }
