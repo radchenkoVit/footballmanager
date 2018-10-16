@@ -91,6 +91,13 @@ public class PlayerController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping(path = "/team/{id}")
+    public ResponseEntity<List<PlayerShortDto>> getPlayersByTeam(@PathVariable(name = "id") Long id) {
+        List<Player> players = playerService.findByTeamId(id);
+        List<PlayerShortDto> dtos = players.stream().map(p -> mapper.map(p, PlayerShortDto.class)).collect(toList());;
+        return new ResponseEntity<>(dtos, HttpStatus.OK);
+    }
+
     @GetMapping(path = "/{id}/assign/team")
     public ResponseEntity assignTeam(@PathVariable(name = "id") Long playerId, @RequestParam(name = "teamId") Long teamId) {
         playerService.assignTeam(playerId, teamId);

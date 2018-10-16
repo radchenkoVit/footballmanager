@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import javax.persistence.EntityManagerFactory;
         @ComponentScan.Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class),
         @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class)
 })
+@PropertySource("classpath:application.properties")
 @EnableTransactionManagement
 public class RootConfig {
 

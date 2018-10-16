@@ -54,6 +54,12 @@ public class PlayerServiceImpl implements PlayerService {
                 .orElseThrow(() -> new EntityNotFoundException("No Player found with id: " + id));
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<Player> findByTeamId(long teamId) {
+        return playerRepository.findByTeamId(teamId);
+    }
+
     @Override//TODO:CREATE SUPPLIER FOR EXCEPTION
     public void assignTeam(long playerId, long teamId) {
         Player player = playerRepository.findById(playerId).orElseThrow(() -> new EntityNotFoundException("No Player found with id: " + playerId));

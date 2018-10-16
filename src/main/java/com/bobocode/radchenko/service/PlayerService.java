@@ -11,6 +11,7 @@ public interface PlayerService {
 
     List<Player> findAll();
     Player findById(long id);
+    List<Player> findByTeamId(long teamId);
     void assignTeam(long playerId, long teamId);
     Player findByLastName(String lastName);
 }
