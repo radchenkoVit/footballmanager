@@ -15,7 +15,7 @@ public interface TeamService {
     Team findById(long id);
     Team findByIdFetchPlayers(long id);
     List<Team> findAll();
-    Set<Team> findAllFetchPlayers();
+    List<Team> findAllFetchPlayers();
     Team findByCaptain(long id);
     void addPlayer(long teamId, Player player);
     void removePlayer(long teamId, Player player);

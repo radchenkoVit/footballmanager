@@ -52,7 +52,7 @@ public class TeamController {
 
     @GetMapping(path = "/full/all")
     public ResponseEntity<List<TeamDto>> getFullAll() {
-        Set<Team> teams = teamService.findAllFetchPlayers();
+        List<Team> teams = teamService.findAllFetchPlayers();
         List<TeamDto> teamsDto = teams.stream().map(t -> toDto(t, TeamDto.class)).collect(toList());
         return new ResponseEntity<>(teamsDto, HttpStatus.OK);
     }

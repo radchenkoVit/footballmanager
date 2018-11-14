@@ -3,7 +3,6 @@ package com.bobocode.radchenko.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,19 +39,19 @@ public class Player {
     @JoinColumn(name = "team_id", unique = true, nullable = true)
     private Team team;
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Player player = (Player) o;
-
-        return id != null ? id.equals(player.id) : player.id == null;
+        return Objects.equals(id, player.id) &&
+                Objects.equals(firstName, player.firstName) &&
+                Objects.equals(lastName, player.lastName) &&
+                Objects.equals(position, player.position);
     }
 
     @Override
     public int hashCode() {
-        return 16;
+        return Objects.hash(id, firstName, lastName, position);
     }
 }

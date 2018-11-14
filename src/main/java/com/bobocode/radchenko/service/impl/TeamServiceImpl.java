@@ -28,7 +28,6 @@ public class TeamServiceImpl implements TeamService {
         return teamRepository.save(team);
     }
 
-    //TODO: is it correct?
     public Team update(Team team) {
         return teamRepository.save(team);
     }
@@ -58,7 +57,7 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Transactional(readOnly = true)
-    public Set<Team> findAllFetchPlayers() {
+    public List<Team> findAllFetchPlayers() {
         return teamRepository.findAllFetchPlayers();
     }
 
